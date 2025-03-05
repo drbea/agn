@@ -13,7 +13,7 @@
         <div class="list-group">
           {% for category in categories %}
           <div class="form-check">
-            <a href="#"
+            <a href="{% url 'products:filter_by_category' category.id %}"
                name="category"
                class="{% if selected_category and category.id == selected_category.id %}active fw-bold bg-primary{% endif %} nav-link"
                id="category{{ category.id }}"
@@ -51,8 +51,8 @@
             <a
               type="submit"
               class="btn btn-outline-info"
-        {% comment %}      href="{% url 'products:detail_product' product.id %}"       {% endcomment %}   
-              href="#"    
+              href="{% url 'products:product_detail' product.id %}" 
+              href="#"
               >Detail</a
             >
           </div>

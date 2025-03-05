@@ -1,12 +1,15 @@
 {% extends "base.html" %}
 {% block title %} Create new product{% endblock %}
 {% block content %}
-<div class="container mt-3">  <div class="row justify-content-center">  <div class="col-md-6">  <form method="POST">
-                {% csrf_token %}
-                <div class="form-floating mb-3">
-                    <input type="text" name="name" class="form-control" id="floatingInput" placeholder="HP Spectre core i7 32Go RAM">
-                    <label for="floatingInput">Product Name</label>
-                </div>
+<div class="container mt-3">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <form method="POST">
+        {% csrf_token %}
+        <div class="form-floating mb-3">
+            <input type="text" name="name" class="form-control" id="floatingInput" placeholder="HP Spectre core i7 32Go RAM">
+            <label for="floatingInput">Product Name</label>
+        </div>
                 <div class="form-floating mb-3">
                     <input type="text" name="description" class="form-control" id="floatingPassword" placeholder="Product description">
                     <label for="floatingPassword">Description</label>
@@ -19,7 +22,7 @@
                     <label class="input-group-text" for="inputGroupFile">Upload product image</label>
                 </div>
                 <div class="form-group">
-                    <label for="categoryDataList" class="form-label">Choose or type to create </label>
+                    <label for="categoryDataList" class="form-label">Choose or type to create a category </label>
                     <input class="form-control" name="category_name" list="datalistOptions" id="categoryDataList" placeholder="Type to search...">
                     <datalist id="datalistOptions">
                         {% for category in categories %}
