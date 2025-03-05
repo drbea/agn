@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Inscription{% endblock %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/home/styles.css' %}">
+{% endblock %}
+{% block navbar %}{% endblock %}
+{% block carousel %}{% endblock %}
+
+{% block content %}
+<div class="container-fluid bg-image">
+    <div class="row align-items-center vh-100">
+        <div class="col-md-6 mx-auto">
+            <div class="card p-4 shadow-sm">
+                <div class="card-header text-center">
+                    Inscription
+                </div>
+                <div class="card-body">
+                    <form id="registerForm" method="post" action="">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Nom d'utilisateur</label>
+                            <input type="text" class="form-control" name="username" id="username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Mot de passe</label>
+                            <input type="password" name="password" class="form-control" id="password" required>
+                        </div>
+                        <button type="button" id="submitButton" class="btn btn-primary btn-block"><i class="fa-solid fa-user-plus"></i> S'inscrire</button>
+                    </form>
+                    <div id="message" class="mt-3 text-center"></div>
+                    <p class="mt-3 text-center">Déjà un compte ? <a href="{% url 'home:login' %}">Se connecter</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const form = document.getElementById('registerForm');
+    const submitButton = document.getElementById('submitButton');
+    const messageDiv = document.getElementById('message');
+
+    submitButton.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+
+        fetch('', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                window.location.href = data.redirect_url;
+            } else {
+                messageDiv.innerHTML = `<div class="alert alert-danger">${data.error}</div>`;
+            }
+        })
+        .catch(error => {
+            console.error('Erreur:', error);
+            messageDiv.innerHTML = '<div class="alert alert-danger">Une erreur est survenue.</div>';
+        });
+    });
+</script>
+{% endblock %}

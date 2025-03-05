@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %} Create new product{% endblock %}
+{% block content %}
+<div class="container mt-3">  <div class="row justify-content-center">  <div class="col-md-6">  <form method="POST">
+                {% csrf_token %}
+                <div class="form-floating mb-3">
+                    <input type="text" name="name" class="form-control" id="floatingInput" placeholder="HP Spectre core i7 32Go RAM">
+                    <label for="floatingInput">Product Name</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" name="description" class="form-control" id="floatingPassword" placeholder="Product description">
+                    <label for="floatingPassword">Description</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="number" name="price" class="form-control" id="floatingPrice" placeholder="415.23">
+                    <label for="floatingPrice">Price</label>
+                </div>
+                <div class="form-group mb-3">  <input type="file" name="image" class="form-control" id="inputGroupFile">
+                    <label class="input-group-text" for="inputGroupFile">Upload product image</label>
+                </div>
+                <div class="form-group">
+                    <label for="categoryDataList" class="form-label">Choose or type to create </label>
+                    <input class="form-control" name="category_name" list="datalistOptions" id="categoryDataList" placeholder="Type to search...">
+                    <datalist id="datalistOptions">
+                        {% for category in categories %}
+                            <option value="{{ category.name }}">
+                        {% endfor %}
+                    </datalist>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Create Product</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

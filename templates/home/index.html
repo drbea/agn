@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+
+{% block content %}
+<!-- Section de la bannière -->
+<section class="bg-primary text-white text-center py-5">
+    <div class="container">
+        <h1>Bienvenue chez AGN Agro-Alimentaire</h1>
+        <p class="lead">Des produits frais, locaux, et de qualité pour tous vos besoins.</p>
+        <a href="#produits" class="btn btn-light btn-lg">Découvrir nos produits</a>
+    </div>
+</section>
+
+<!-- Section des produits -->
+<section id="produits" class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Nos Produits</h2>
+        <div class="row">
+            <!-- Exemple de produit -->
+            <div class="col-md-4">
+                <div class="card .produit">
+                    <img src="{% static 'img/baniere1.png' %}" class="card-img-top" alt="Produit 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Produit 1</h5>
+                        <p class="card-text">Description du produit 1.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Ajoute d'autres produits ici -->
+            <div class="col-md-4">
+                <div class="card produit">
+                    <img src="{% static 'img/baniere1.png' %}" class="card-img-top" alt="Produit 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Produit 2</h5>
+                        <p class="card-text">Description du produit 2.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section témoignages -->
+<section class="bg-light py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Témoignages</h2>
+        <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner testimonial-carousel">
+                <div class="carousel-item active">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">"Les produits d'AGN sont exceptionnels, nous recommandons vivement !" - Client A</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">"Un fournisseur de confiance, toujours à la hauteur de nos attentes." - Partenaire B</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Ajoute d'autres témoignages ici -->
+            </div>
+            <a class="carousel-control-prev" href="#testimonialCarousel" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#testimonialCarousel" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/home/styles.css' %}">
+<style>
+    .produit img {
+    width: 150px;
+}
+</style>
+{% endblock %}
