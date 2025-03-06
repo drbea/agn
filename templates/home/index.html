@@ -13,6 +13,8 @@
         <a href="#produits" class="btn btn-light btn-lg">Découvrir nos produits</a>
     </div>
 </section>
+{% include 'partials/carousel.html' %}
+
 
 <!-- Section des produits -->
 <section id="produits" class="py-5">
@@ -53,6 +55,8 @@
                     <div class="card">
                         <div class="card-body">
                             <p class="card-text">"Les produits d'AGN sont exceptionnels, nous recommandons vivement !" - Client A</p>
+                    <img src="{% static 'img/baniere1.png' %}" class="img img-fluid" alt="Produit 1">
+                       
                         </div>
                     </div>
                 </div>
@@ -60,6 +64,8 @@
                     <div class="card">
                         <div class="card-body">
                             <p class="card-text">"Un fournisseur de confiance, toujours à la hauteur de nos attentes." - Partenaire B</p>
+                    <img src="{% static 'img/baniere1.png' %}" class="card-img-top" alt="Produit 1">
+                            
                         </div>
                     </div>
                 </div>
