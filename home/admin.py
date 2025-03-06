@@ -3,8 +3,6 @@ from .models import Testimonial
 
 # Register your models here.
 
-
-
 @admin.register(Testimonial)
 class TestimonialAdmin(admin.ModelAdmin):
     list_display = ('name', 'created_at', 'approved')  # Colonnes à afficher dans la liste
