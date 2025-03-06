@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
@@ -29,9 +28,10 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+user_defined_apps = ['app.blog', 'app.shop', ]
 
 INSTALLED_APPS = [
-    'jazzmin',
+    # 'jazzmin',
     # 'django.contrib.admin',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -42,7 +42,9 @@ INSTALLED_APPS = [
 
     'accounts',
     'products',
+    # 'app.blog',
 ]
+# INSTALLED_APPS += user_defined_apps
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
