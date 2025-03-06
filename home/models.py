@@ -1,6 +1,14 @@
 from django.db import models
 
+from products.models import Product
+
 # Create your models here.
+
+class Image(models.Model):
+    # product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='testimonials/', null=True, blank=True)
+
+
 class Testimonial(models.Model):
     name = models.CharField(max_length=255)  # Le nom de la personne qui laisse le témoignage
     message = models.TextField()  # Le contenu du témoignage
@@ -19,6 +27,3 @@ class Testimonial(models.Model):
 
 
 
-class Image(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='testimonials/', null=True, blank=True)

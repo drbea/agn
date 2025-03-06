@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Panier {% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1>Votre Panier</h1>
+        {% if cart_items %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Produit</th>
+                        <th>Quantité</th>
+                        <th>Prix unitaire</th>
+                        <th>Sous-total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart_items %}
+                        <tr data-item-id="{{ item.id }}">
+                            <td>
+                                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" width="50">
+                                {{ item.product.name }}
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-secondary quantity-decrease" data-item-id="{{ item.id }}">-</button>
+                                <span class="quantity-value" data-item-id="{{ item.id }}">{{ item.quantity }}</span>
+                                <button class="btn btn-sm btn-outline-secondary quantity-increase" data-item-id="{{ item.id }}">+</button>
+                            </td>
+                            <td>{{ item.product.price }}</td>
+                            <td class="subtotal-value" data-item-id="{{ item.id }}">{{ item.get_subtotal }}</td>
+                            <td><button class="btn btn-danger btn-sm remove-item" data-item-id="{{ item.id }}">Supprimer</button></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="text-right">
+                <h3>Total : <span id="cart-total">{{ total }}</span></h3>
+                <a href="{% url 'products:checkout' %}" class="btn btn-primary">Passer à la caisse</a>
+            </div>
+        {% else %}
+            <p class="alert alert-info">Votre panier est vide.</p>
+        {% endif %}
+    </div>
+
+{% endblock %}
+{% block js %} 
+
+<script type="module" >
+    document.addEventListener('DOMContentLoaded', function() {
+        // Fonction pour mettre à jour le panier via AJAX
+        function updateCart(itemId, quantity) {
+            fetch('/products/update_cart/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-CSRFToken': getCookie('csrftoken') // Fonction pour récupérer le CSRF token
+                },
+                body: `item_id=${itemId}&quantity=${quantity}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Mettre à jour la quantité et le sous-total dans le tableau
+                document.querySelector(`.quantity-value[data-item-id="${itemId}"]`).textContent = data.quantity;
+                document.querySelector(`.subtotal-value[data-item-id="${itemId}"]`).textContent = data.subtotal;
+                document.getElementById('cart-total').textContent = data.cart_total;
+            })
+            .catch(error => {
+                console.error('Une erreur est survenue lors de la mise à jour du panier:', error);
+                alert('Une erreur est survenue lors de la mise à jour du panier.');
+            });
+        }
+    
+        // Fonction pour supprimer un item
+        function removeItem(itemId, row) {
+            fetch('/products/remove_item_ajax/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-CSRFToken': getCookie('csrftoken')
+                },
+                body: `item_id=${itemId}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                row.remove();
+                document.getElementById('cart-total').textContent = data.cart_total;
+                if (data.cart_total === "0.00") {
+                    document.querySelector('.table').remove();
+                    document.querySelector('.text-right').remove();
+                    document.querySelector('.container').insertAdjacentHTML('beforeend', "<p class='alert alert-info'>Votre panier est vide.</p>");
+                }
+            })
+            .catch(error => {
+                console.error('Une erreur est survenue lors de la suppression de l\'item:', error);
+                alert('Une erreur est survenue lors de la suppression de l\'item.');
+            });
+        }
+    
+        // Fonction pour récupérer le CSRF token
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+    
+        // Gestion des clics pour augmenter la quantité
+        document.querySelectorAll('.quantity-increase').forEach(button => {
+            button.addEventListener('click', function() {
+                const itemId = this.dataset.itemId;
+                let quantity = parseInt(document.querySelector(`.quantity-value[data-item-id="${itemId}"]`).textContent) + 1;
+                updateCart(itemId, quantity);
+            });
+        });
+    
+        // Gestion des clics pour diminuer la quantité
+        document.querySelectorAll('.quantity-decrease').forEach(button => {
+            button.addEventListener('click', function() {
+                const itemId = this.dataset.itemId;
+                let quantity = parseInt(document.querySelector(`.quantity-value[data-item-id="${itemId}"]`).textContent) - 1;
+                if (quantity > 0) {
+                    updateCart(itemId, quantity);
+                }
+            });
+        });
+    
+        // Gestion des clics pour supprimer un item
+        document.querySelectorAll('.remove-item').forEach(button => {
+            button.addEventListener('click', function() {
+                const itemId = this.dataset.itemId;
+                const row = this.closest('tr');
+                removeItem(itemId, row);
+            });
+        });
+    });
+</script>
+{% endblock %}

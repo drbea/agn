@@ -27,6 +27,28 @@ class Product(models.Model):
 
 
 
+class Cart(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)  # Un utilisateur a un seul panier
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Panier de {self.user.username}"
+
+    def get_total(self):
+        return sum(item.get_subtotal() for item in self.items.all())
+
+class CartItem(models.Model):
+    cart = models.ForeignKey(Cart, related_name='items', on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+
+    def __str__(self):
+        return f"{self.quantity} x {self.product.name} dans le panier de {self.cart.user.username}"
+
+    def get_subtotal(self):
+        return self.product.price * self.quantity
+
+        
 # class Commentaire(models.Model):
 #     autheur = models.ForeignKey(User, on_delete = models.CASCADE)
 #     publication = models.ForeignKey(Publication, on_delete = models.CASCADE)
@@ -54,3 +76,28 @@ class Product(models.Model):
 # class Image(models.Model):
 #     product = models.ForeignKey(Product, on_delete=models.CASCADE)
 #     image = models.ImageField(upload_to='product_images/')
+
+
+
+class Order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    email = models.EmailField()
+    address = models.CharField(max_length=255)
+    city = models.CharField(max_length=100)
+    zip_code = models.CharField(max_length=20)
+    total = models.DecimalField(max_digits=10, decimal_places=2)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Commande #{self.id} par {self.user.username}"
+
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return f"{self.quantity} x {self.product.name} dans la commande #{self.order.id}"
