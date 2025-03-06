@@ -42,7 +42,7 @@ INSTALLED_APPS = [
 
     'accounts',
     'products',
-    'app.blog',
+    # 'app.blog',
 ]
 # INSTALLED_APPS += user_defined_apps
 
