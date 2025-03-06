@@ -1,9 +1,12 @@
 from django.shortcuts import render
-
+from products.models import Product
 # Create your views here.
 def index(request):
+    products = Product.objects.all()[0:3:-1]
+    context = {
+        'products': products
+    }
 
-    context = {}
     return render(request, "home/index.html", context)
 
 def contact(request):

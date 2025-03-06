@@ -21,26 +21,19 @@
     <div class="container">
         <h2 class="text-center mb-4">Nos Produits</h2>
         <div class="row">
+            {% for product in products %}
             <!-- Exemple de produit -->
             <div class="col-md-4">
                 <div class="card .produit">
-                    <img src="{% static 'img/baniere1.png' %}" class="card-img-top" alt="Produit 1">
+                    <img src="{{product.image.url}}" class="card-img-top" alt="Produit 1">
                     <div class="card-body">
-                        <h5 class="card-title">Produit 1</h5>
-                        <p class="card-text">Description du produit 1.</p>
+                        <h5 class="card-title">{{ product.name }} </h5>
+                        <p class="card-text">{{ product.Description }}</p>
                     </div>
                 </div>
             </div>
-            <!-- Ajoute d'autres produits ici -->
-            <div class="col-md-4">
-                <div class="card produit">
-                    <img src="{% static 'img/baniere1.png' %}" class="card-img-top" alt="Produit 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Produit 2</h5>
-                        <p class="card-text">Description du produit 2.</p>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
+
         </div>
     </div>
 </section>
@@ -52,16 +45,16 @@
         <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner testimonial-carousel">
                 <div class="carousel-item active">
-                    <div class="card">
+                    <div class="card text-center">
                         <div class="card-body">
                             <p class="card-text">"Les produits d'AGN sont exceptionnels, nous recommandons vivement !" - Client A</p>
-                    <img src="{% static 'img/baniere1.png' %}" class="img img-fluid" alt="Produit 1">
+                    <img src="{% static 'img/baniere1.png' %}" class="card-img-top" alt="Produit 1">
                        
                         </div>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <div class="card">
+                    <div class="card text-center">
                         <div class="card-body">
                             <p class="card-text">"Un fournisseur de confiance, toujours à la hauteur de nos attentes." - Partenaire B</p>
                     <img src="{% static 'img/baniere1.png' %}" class="card-img-top" alt="Produit 1">
@@ -89,6 +82,13 @@
 <style>
     .produit img {
     width: 150px;
+
+}
+.card-body img {
+    width: 600px;
+    height: auto;
+    border-radius: 50%;
+    margin: 20px auto;
 }
 </style>
 {% endblock %}

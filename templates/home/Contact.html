@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contactez-nous</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Contactez-nous{% endblock %}
+
+
+{% block content %}
     <div class="contact-form-container">
         <div class="form-image">
-            <img src="votre-image.jpg" alt="Image de l'entreprise ou des produits">
+            <img src="{% static 'img/baniere1.png' %}" alt="Image de l'entreprise ou des produits">
         </div>
         <div class="form-content">
             <h2>Contactez-nous</h2>
@@ -34,19 +33,18 @@
             </form>
         </div>
     </div>
-</body>
-</html>
 
+{% endblock %}
+{% block css %} 
 <style>
     body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
-    margin: 0;
+    /* margin: auto; */
     padding: 0;
-    display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+    /* align-items: center; */
+    /* height: 100vh; */
 }
 
 .contact-form-container {
@@ -55,8 +53,13 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
-    max-width: 800px;
-    width: 100%;
+    /* max-width: 800px; */
+    /* width: 100%; */
+    margin: auto;
+    padding: 50px;
+
+
+
 }
 
 .form-image {
@@ -129,3 +132,5 @@ button:hover {
 }
 
 </style>
+{% endblock %}
+

@@ -106,3 +106,144 @@
 {% block javascript %}
 <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
 {% endblock %}
+
+{% block css %}
+<style>
+  .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .card-img-top {
+    transition: transform 0.3s ease;
+  }
+
+  .card:hover .card-img-top {
+    transform: scale(1.1);
+  }
+
+  .card-body {
+    padding: 15px;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .card-text {
+    font-size: 0.9rem;
+    color: #555;
+  }
+
+  .card-footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #ddd;
+    padding: 10px 15px;
+    font-size: 0.85rem;
+    color: #666;
+  }
+
+  .btn {
+    margin: 5px;
+  }
+
+  .pagination {
+    margin-top: 20px;
+  }
+
+  .pagination .page-item {
+    margin: 0 5px;
+  }
+
+  .pagination .page-link {
+    border-radius: 4px;
+    padding: 5px 10px;
+  }
+
+  .pagination .page-item.active .page-link {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+
+  .pagination .page-item.disabled .page-link {
+    color: #6c757d;
+  }
+
+  .btn {
+    border: none;
+    border-radius: 25px; /* Boutons arrondis */
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Bouton "Détail" */
+  .btn-outline-info {
+    color: #17a2b8; /* Couleur du texte */
+    border: 2px solid #17a2b8; /* Bordure */
+    background-color: transparent;
+  }
+
+  .btn-outline-info:hover {
+    color: #fff; /* Couleur du texte au survol */
+    background: linear-gradient(45deg, #17a2b8, #138496); /* Dégradé */
+    border-color: transparent; /* Supprime la bordure au survol */
+    box-shadow: 0 4px 15px rgba(23, 162, 184, 0.3); /* Ombre */
+  }
+
+  /* Bouton "Ajouter au panier" */
+  .btn-outline-secondary {
+    color: #6c757d; /* Couleur du texte */
+    border: 2px solid #6c757d; /* Bordure */
+    background-color: transparent;
+  }
+
+  .btn-outline-secondary:hover {
+    color: #fff; /* Couleur du texte au survol */
+    background: linear-gradient(45deg, #28a745, #20c997); /* Dégradé vert */
+    border-color: transparent; /* Supprime la bordure au survol */
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3); /* Ombre */
+  }
+
+  /* Effet de remplissage au survol */
+  .btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%) rotate(45deg);
+    transition: all 0.5s ease;
+    z-index: 0;
+  }
+
+  .btn:hover::before {
+    width: 0;
+    height: 0;
+  }
+
+  /* Texte du bouton au-dessus de l'effet */
+  .btn span {
+    position: relative;
+    z-index: 1;
+  }
+</style>
+{% endblock %}
+
+
+
