@@ -1,8 +1,15 @@
 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 from django.core.paginator import Paginator
 from django.db.models import Q
 # from django.contrib import messages
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+
+from .models import Product, Cart, CartItem, Order, OrderItem
+from .forms import OrderForm
+from django.contrib.auth.decorators import login_required
+
 from . models import Category, Product
 
 # Create your views here.
@@ -35,7 +42,6 @@ def product_list(request):
         'query_search': query_search
         }
     return render(request, 'products/list_product.html', context)
-
 
 
 def filter_by_category(request, category_id):
@@ -101,11 +107,113 @@ def add_product(request):
 
 
 
+@login_required
+def add_to_cart(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    cart, created = Cart.objects.get_or_create(user=request.user)
+    cart_item, item_created = CartItem.objects.get_or_create(cart=cart, product=product)
+
+    if not item_created:
+        cart_item.quantity += 1
+        cart_item.save()
+
+    return redirect('products:cart_view')  # Rediriger vers la vue du panier
+
+
+@login_required
+def cart_view(request):
+    cart, created = Cart.objects.get_or_create(user=request.user)
+    cart_items = cart.items.all()
+    total = cart.get_total()
+    context = {'cart_items': cart_items, 'total': total}
+    return render(request, 'products/panier.html', context)
+
+
+@login_required
+@require_POST
+def update_cart(request):
+    try:
+        item_id = request.POST.get('item_id')
+        quantity = int(request.POST.get('quantity'))
+        item = get_object_or_404(CartItem, id=item_id, cart__user=request.user)
+        item.quantity = quantity
+        item.save()
+        cart = item.cart
+        return JsonResponse({
+            'quantity': item.quantity,
+            'subtotal': str(item.get_subtotal()),
+            'cart_total': str(cart.get_total())
+        })
+    except Exception as e:
+        print(f"Error in update_cart: {e}") # Ajout d'un print
+        return JsonResponse({'error': str(e)}, status=500)
+
+@login_required
+@require_POST
+def remove_item_ajax(request):
+    try:
+        item_id = request.POST.get('item_id')
+        item = get_object_or_404(CartItem, id=item_id, cart__user=request.user)
+        cart = item.cart
+        item.delete()
+        return JsonResponse({'cart_total': str(cart.get_total())})
+    except Exception as e:
+        print(f"Error in remove_item_ajax: {e}") # Ajout d'un print
+        return JsonResponse({'error': str(e)}, status=500)
+
+
+@login_required
+def checkout(request):
+    cart, created = Cart.objects.get_or_create(user=request.user)
+    cart_items = cart.items.all()
+    total = cart.get_total()
+
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            # Récupération des données du formulaire
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            email = form.cleaned_data['email']
+            address = form.cleaned_data['address']
+            city = form.cleaned_data['city']
+            zip_code = form.cleaned_data['zip_code']
+
+            # Création de la commande
+            order = Order.objects.create(
+                user=request.user,
+                first_name=first_name,
+                last_name=last_name,
+                email=email,
+                address=address,
+                city=city,
+                zip_code=zip_code,
+                total=total
+            )
+
+            # Création des éléments de commande
+            for item in cart_items:
+                OrderItem.objects.create(
+                    order=order,
+                    product=item.product,
+                    quantity=item.quantity,
+                    price=item.product.price
+                )
+
+            # Vider le panier
+            cart.items.all().delete()
+
+            # Redirection vers la confirmation de commande
+            return redirect('products:order_confirmation')
+    else:
+        form = OrderForm()
+
+    context = {'cart_items': cart_items, 'total': total, 'form': form}
+    return render(request, 'products/checkout.html', context)
+
+@login_required
+def order_confirmation(request):
+    return render(request, 'products/order_confirmation.html')
 
 
 
-def panier(request):
-    context = {
-            # "product": product,
-        }
-    return render(request, "boutique/panier.html", context)

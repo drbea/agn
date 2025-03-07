@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Blog{% endblock %}
+{% block css %}
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f4;
+    }
+    .container {
+        margin-top: 20px;
+    }
+    .article-content {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .sidebar {
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .article-list li {
+        margin-bottom: 10px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            {% comment %} Main {% endcomment %}
+            <div class="col-md-8 article-content">
+               {% comment %} Contenu des post/article/publication {% endcomment %}
+            {% include "blog/partials/articles.html" %}
+
+            </div>
+
+            <div class="col-md-4 sidebar">
+                {% block sidebar %}
+                    <h3>Articles récents</h3>
+                    <ul class="article-list">
+                        <li><a href="#">Article 1</a></li>
+                        <li><a href="#">Article 2</a></li>
+                        <li><a href="#">Article 3</a></li>
+                    </ul>
+                    <h3>Catégories</h3>
+                    <ul>
+                        <li><a href="#">Catégorie 1</a></li>
+                        <li><a href="#">Catégorie 2</a></li>
+                    </ul>
+                    <h3>Autres éléments</h3>
+                    {% comment %} <p>Vous pouvez ajouter d'autres éléments ici.</p> {% endcomment %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock  %}
+{% block js %}{% endblock %}

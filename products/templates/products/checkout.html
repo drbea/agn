@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %} Passer à la caisse {% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1>Passer à la caisse</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Confirmer la commande</button>
+        </form>
+    </div>
+{% endblock %}

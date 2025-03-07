@@ -42,7 +42,7 @@
           <div class="d-flex justify-content-between mt-4">
           {% comment %}  <h4 class="text-success">{{ product.price|currency }}</h4> {% endcomment %}
             <h4 class="text-success">{{ product.price }}</h4>
-            <button class="btn btn-primary btn-lg">Add to Cart</button>
+            <a class="btn btn-primary btn-lg" href="{% url 'products:add_to_cart' product.id %}" >Add to Cart</a>
           </div>
         </div>
       </div>
