@@ -13,7 +13,7 @@ urlpatterns = [
     path("products/", include("products.urls")),
 
     # path("shop/", include("shop.urls")),
-    # path("blog/", include("blog.urls")),
+    path("blog/", include("blog.urls")),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
