@@ -24,10 +24,38 @@
     .article-list li {
         margin-bottom: 10px;
     }
+    .banner {
+        background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZnX36jyR6mxGymA1ejlbfc7_XWgftDV2nhQ&s'); /* Remplacez par l'URL de votre image */
+        background-size: cover;
+        background-position: center;
+        color: white;
+        padding: 100px 20px;
+        text-align: left;
+        position: relative;
+    }
+    .banner h1 {
+        font-size: 3em;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    .banner p {
+        font-size: 1.2em;
+    }
+    .breadcrumb {
+        position: absolute;
+        bottom: 10px;
+        left: 20px;
+        color: white;
+    }
 </style>
 {% endblock %}
 
 {% block content %}
+
+  {% block baniere %}
+    {% include "blog/partials/blog_baniere.html" %}
+  {% endblock %}
+
     <div class="container">
         <div class="row">
             {% comment %} Main {% endcomment %}
@@ -39,19 +67,7 @@
 
             <div class="col-md-4 sidebar">
                 {% block sidebar %}
-                    <h3>Articles récents</h3>
-                    <ul class="article-list">
-                        <li><a href="#">Article 1</a></li>
-                        <li><a href="#">Article 2</a></li>
-                        <li><a href="#">Article 3</a></li>
-                    </ul>
-                    <h3>Catégories</h3>
-                    <ul>
-                        <li><a href="#">Catégorie 1</a></li>
-                        <li><a href="#">Catégorie 2</a></li>
-                    </ul>
-                    <h3>Autres éléments</h3>
-                    {% comment %} <p>Vous pouvez ajouter d'autres éléments ici.</p> {% endcomment %}
+                {% include 'blog/partials/sidebar_category.html' %}
                 {% endblock %}
             </div>
         </div>
