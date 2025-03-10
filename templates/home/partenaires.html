@@ -1,0 +1,67 @@
+{% load static %}
+
+
+<div class="container my-5">
+    <h2 class="text-center mb-4">Nos Partenaires</h2>
+
+    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+        <!-- Premier partenaire -->
+        <div class="col">
+            <div class="card partner-card text-center">
+                <img src="https://yt3.googleusercontent.com/K8WVrQAQHTTwsHEtisMYcNai7p7XIlyEAdZg86qYw78ye57r5DRemHQ9Te4PcD_v98HB-ZvQjQ=s900-c-k-c0x00ffffff-no-rj" alt="Partenaire 1" class="card-img-top partner-logo mx-auto mt-3">
+                <div class="card-body">
+                    <h5 class="card-title"><a href="https:www.google.com">GOOGLE</a></h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Deuxième partenaire -->
+        <div class="col">
+            <div class="card partner-card text-center">
+                <img src="{% static 'img/IMG_0476.jpg' %}" alt="Partenaire 2" class="card-img-top partner-logo mx-auto mt-3">
+                <div class="card-body">
+                    <h5 class="card-title">Partenaire 2</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Troisième partenaire -->
+        <div class="col">
+            <div class="card partner-card text-center">
+                <img src="{% static 'img/IMG_0476.jpg' %}" alt="Partenaire 3" class="card-img-top partner-logo mx-auto mt-3">
+                <div class="card-body">
+                    <h5 class="card-title">Partenaire 3</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quatrième partenaire -->
+        <div class="col">
+            <div class="card partner-card text-center">
+                <img src="{% static 'img/IMG_0476.jpg' %}" alt="Partenaire 4" class="card-img-top partner-logo mx-auto mt-3">
+                <div class="card-body">
+                    <h5 class="card-title">Partenaire 4</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<style>
+    .partner-logo {
+        max-width: 200px;
+        max-height: 150px;
+        object-fit: contain;
+    }
+    .partner-card {
+        border: none;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .partner-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+</style>

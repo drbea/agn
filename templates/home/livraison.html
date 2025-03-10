@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Service de Livraison Rapide{% endblock %}
+
+{% block css %}
+<style>
+  .delivery-section {
+    padding: 60px 0;
+    background-color: #f8f9fa;
+  }
+  .delivery-content {
+    padding: 20px;
+  }
+  .delivery-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #343a40;
+  }
+  .delivery-content p, .delivery-content ul {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #6c757d;
+  }
+  .delivery-content ul {
+    list-style-type: disc;
+    margin-left: 20px;
+  }
+  .delivery-content .contact-info {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #343a40;
+  }
+  .delivery-content .contact-info span {
+    font-weight: bold;
+  }
+  .delivery-content .btn-delivery {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+  }
+  .delivery-content .btn-delivery:hover {
+    background-color: #0056b3;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="delivery-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="delivery-content">
+          <h2 class="text-center">Service de Livraison Rapide</h2>
+          <p>
+            Chez AGN, nous comprenons l'importance de recevoir vos produits rapidement et en parfait état. C'est pourquoi nous avons mis en place un service de livraison fiable et efficace pour vous garantir une expérience d'achat sans souci.
+          </p>
+          <p>
+            <strong>Nos engagements :</strong>
+          </p>
+          <ul>
+            <li>Livraison rapide : Nous nous efforçons de traiter et d'expédier vos commandes dans les plus brefs délais.</li>
+            <li>Suivi de commande : Vous pouvez suivre l'état de votre commande en temps réel grâce à notre système de suivi en ligne.</li>
+            <li>Emballage sécurisé : Tous nos produits sont soigneusement emballés pour garantir qu'ils arrivent en parfait état.</li>
+            <li>Zones desservies : Nous livrons dans de nombreuses régions et nous travaillons constamment à étendre notre couverture.</li>
+          </ul>
+          <p class="contact-info">
+            Pour toute question concernant notre service de livraison, n'hésitez pas à nous contacter :
+            <br>
+            <span>Téléphone :</span>  <a href="tel:+33612445566">612 44 55 66</a>
+            <br>
+            <span>Email :</span> contact@agn.com
+          </p>
+          <a href="#" class="btn-delivery">Commander une Livraison</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
