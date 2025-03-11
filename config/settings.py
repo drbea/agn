@@ -28,7 +28,7 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-user_defined_apps = ['blog', 'shop', ]
+# user_defined_apps = ['blog', 'shop', ]
 
 INSTALLED_APPS = [
     # 'jazzmin',
@@ -43,8 +43,10 @@ INSTALLED_APPS = [
     'accounts',
     'products',
     'home',
+    'blog',
+
 ]
-INSTALLED_APPS += user_defined_apps
+# INSTALLED_APPS += user_defined_apps
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

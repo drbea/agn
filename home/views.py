@@ -16,7 +16,11 @@ def apropos(request):
     return render(request, 'home/Apropos.html')
 
 def livraison(request):
+<<<<<<< HEAD
     return render(request, 'home/Livraison.html')
 
 def offres(request):
     return render(request, 'home/Offres.html')
+=======
+    return render(request, 'home/livraison.html')
+>>>>>>> bb002949fb2d15105139e837075de82624afaf5f
