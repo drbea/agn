@@ -19,10 +19,13 @@
     <!-- End Navbar -->
 
     <!-- Main contain : Principal -->
-    {% block content %} {% endblock %}
+    <main>
+        {% block content %} {% endblock %}
+    </main>
     <!-- end Main contain -->
 
     <!-- Footer: Pied de page -->
+    {% include 'partials/footer.html' %}
     {% block footer %} {% endblock %}
     <!-- End Footer: Pied de page -->
 

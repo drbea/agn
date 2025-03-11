@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Offres Spéciales{% endblock %}
+
+{% block content %}
+<section class="offers-section py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">Offres Spéciales</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <img src="{% static 'img/offer1.jpg' %}" class="card-img-top" alt="Offre 1">
+          <div class="card-body">
+            <h5 class="card-title">Offre 1</h5>
+            <p class="card-text">Description de l'offre spéciale 1.</p>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#offer1Modal">En savoir plus</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <img src="{% static 'img/offer2.jpg' %}" class="card-img-top" alt="Offre 2">
+          <div class="card-body">
+            <h5 class="card-title">Offre 2</h5>
+            <p class="card-text">Description de l'offre spéciale 2.</p>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#offer2Modal">En savoir plus</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <img src="{% static 'img/offer3.jpg' %}" class="card-img-top" alt="Offre 3">
+          <div class="card-body">
+            <h5 class="card-title">Offre 3</h5>
+            <p class="card-text">Description de l'offre spéciale 3.</p>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#offer3Modal">En savoir plus</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modals -->
+<div class="modal fade" id="offer1Modal" tabindex="-1" aria-labelledby="offer1ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="offer1ModalLabel">Offre 1</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Détails supplémentaires sur l'offre spéciale 1.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="offer2Modal" tabindex="-1" aria-labelledby="offer2ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="offer2ModalLabel">Offre 2</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Détails supplémentaires sur l'offre spéciale 2.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="offer3Modal" tabindex="-1" aria-labelledby="offer3ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="offer3ModalLabel">Offre 3</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Détails supplémentaires sur l'offre spéciale 3.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block css %}
+<style>
+  .special-offers-section {
+    padding: 60px 0;
+    background-color: #f8f9fa;
+  }
+  .card {
+    margin-bottom: 20px;
+  }
+  .card-img-top {
+    height: 200px;
+    object-fit: cover;
+  }
+</style>
+{% endblock %}

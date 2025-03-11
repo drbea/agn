@@ -1,9 +1,7 @@
-
 {% extends "base.html" %}
 {% load static %}
 
 {% block title %}Contactez-nous{% endblock %}
-
 
 {% block content %}
     <div class="contact-form-container">
@@ -22,6 +20,10 @@
                     <input type="email" id="email" name="email" required>
                 </div>
                 <div class="form-group">
+                    <label for="phone">Téléphone:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
                     <label for="subject">Sujet:</label>
                     <input type="text" id="subject" name="subject" required>
                 </div>
@@ -29,8 +31,20 @@
                     <label for="message">Message:</label>
                     <textarea id="message" name="message" rows="5" required></textarea>
                 </div>
+                <div class="form-group">
+                    <label for="preferred_contact">Préférence de contact:</label>
+                    <select id="preferred_contact" name="preferred_contact" required>
+                        <option value="email">Email</option>
+                        <option value="phone">Téléphone</option>
+                    </select>
+                </div>
                 <button type="submit">Envoyer</button>
             </form>
+            <div class="live-chat">
+                <h3>Chat en direct</h3>
+                <p>Besoin d'aide immédiate? Cliquez sur le bouton ci-dessous pour discuter avec notre équipe en temps réel.</p>
+                <button onclick="startLiveChat()">Démarrer le chat</button>
+            </div>
         </div>
     </div>
 
@@ -38,99 +52,127 @@
 {% block css %} 
 <style>
     body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    /* margin: auto; */
-    padding: 0;
-    justify-content: center;
-    /* align-items: center; */
-    /* height: 100vh; */
-}
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        padding: 0;
+        justify-content: center;
+    }
 
-.contact-form-container {
-    display: flex;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
-    /* max-width: 800px; */
-    /* width: 100%; */
-    margin: auto;
-    padding: 50px;
-
-
-
-}
-
-.form-image {
-    flex: 1;
-    background-color: #e0e0e0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.form-image img {
-    max-width: 100%;
-    height: auto;
-}
-
-.form-content {
-    flex: 1;
-    padding: 20px;
-}
-
-h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #333;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #555;
-}
-
-input[type="text"],
-input[type="email"],
-textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-}
-
-button {
-    background-color: #007BFF;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-@media (max-width: 768px) {
     .contact-form-container {
-        flex-direction: column;
+        display: flex;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+        margin: auto;
+        padding: 50px;
     }
 
     .form-image {
-        display: none;
+        flex: 1;
+        background-color: #e0e0e0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
-}
 
+    .form-image img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .form-content {
+        flex: 1;
+        padding: 20px;
+    }
+
+    h2 {
+        margin-bottom: 20px;
+        font-size: 24px;
+        color: #333;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #555;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea,
+    select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+
+    button {
+        background-color: #007BFF;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    .live-chat {
+        margin-top: 30px;
+    }
+
+    .live-chat h3 {
+        font-size: 20px;
+        color: #333;
+    }
+
+    .live-chat p {
+        font-size: 16px;
+        color: #555;
+    }
+
+    .live-chat button {
+        background-color: #28a745;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .live-chat button:hover {
+        background-color: #218838;
+    }
+
+    @media (max-width: 768px) {
+        .contact-form-container {
+            flex-direction: column;
+        }
+
+        .form-image {
+            display: none;
+        }
+    }
 </style>
 {% endblock %}
+
+<script>
+    function startLiveChat() {
+        // Code to start live chat
+        alert("Le chat en direct sera bientôt disponible.");
+    }
+</script>
 

@@ -12,10 +12,11 @@ def index(request):
 def contact(request):
     return render(request, 'home/Contact.html')
 
-
-
 def apropos(request):
     return render(request, 'home/Apropos.html')
 
 def livraison(request):
     return render(request, 'home/Livraison.html')
+
+def offres(request):
+    return render(request, 'home/Offres.html')

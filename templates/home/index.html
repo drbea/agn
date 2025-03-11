@@ -3,7 +3,6 @@
 
 {% block title %}Home{% endblock %}
 
-
 {% block content %}
 <!-- Section de la bannière -->
 <section class="bg-success my-1 text-black text-center py-5">
@@ -15,7 +14,6 @@
 </section>
 {% include 'partials/carousel.html' %}
 
-
 <!-- Section des produits -->
 <section id="produits" class="py-5">
     <div class="container">
@@ -23,20 +21,45 @@
         <div class="row">
             {% for product in products %}
             <!-- Exemple de produit -->
-            <div class="col-md-4">
-                <div class="card .produit">
-                    <img src="{{product.image.url}}" class="card-img-top" alt="Produit 1">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ product.name }} </h5>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <img src="{{product.image.url}}" class="card-img-top" alt="{{ product.name }}">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">{{ product.name }}</h5>
                         <p class="card-text">{{ product.Description }}</p>
+                        <div class="mt-auto">
+                            <!-- <a href="#" class="btn btn-primary">Voir le produit</a> -->
+                        </div>
                     </div>
                 </div>
             </div>
             {% endfor %}
-
         </div>
     </div>
 </section>
+
+<!-- Section des catégories -->
+<!-- <section id="categories" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-4">Nos Catégories</h2>
+        <div class="row">
+            {% for category in categories %}
+            <div class="col-md-3 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <img src="{{ category.image.url }}" class="card-img-top" alt="{{ category.name }}">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">{{ category.name }}</h5>
+                        <p class="card-text">{{ category.description }}</p>
+                        <div class="mt-auto">
+                            <a href="{% url 'products:category' category.id %}" class="btn btn-primary">Voir la catégorie</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section> -->
 
 <!-- Section témoignages -->
 <section class="bg-light py-5">
@@ -48,8 +71,7 @@
                     <div class="card text-center">
                         <div class="card-body">
                             <p class="card-text">"Les produits d'AGN sont exceptionnels, nous recommandons vivement !" - Client A</p>
-                    <img src="{% static 'img/baniere1.png' %}" class="card-img-top" alt="Produit 1">
-                       
+                            <img src="{% static 'img/baniere1.png' %}" class="card-img-top" alt="Produit 1">
                         </div>
                     </div>
                 </div>
@@ -57,8 +79,7 @@
                     <div class="card text-center">
                         <div class="card-body">
                             <p class="card-text">"Un fournisseur de confiance, toujours à la hauteur de nos attentes." - Partenaire B</p>
-                    <img src="{% static 'img/baniere1.png' %}" class="card-img-top" alt="Produit 1">
-                            
+                            <img src="{% static 'img/baniere1.png' %}" class="card-img-top" alt="Produit 1">
                         </div>
                     </div>
                 </div>
@@ -76,22 +97,72 @@
     </div>
 </section>
 
-{% include 'home/partenaires.html' %}+
+<!-- Section FAQ
+<section class="faq-section py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">Questions Fréquemment Posées</h2>
+    <div class="faq">
+      <div class="faq-item">
+        <h3>Comment puis-je suivre ma commande ?</h3>
+        <p>Vous pouvez suivre l'état de votre commande en temps réel grâce à notre système de suivi en ligne. Un lien de suivi vous sera envoyé par email après l'expédition de votre commande.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Quels sont les délais de livraison ?</h3>
+        <p>Nous nous efforçons de traiter et d'expédier vos commandes dans les plus brefs délais. Les délais de livraison varient en fonction de votre localisation.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Quels modes de paiement acceptez-vous ?</h3>
+        <p>Nous acceptons les paiements par carte de crédit, PayPal et virement bancaire.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Comment puis-je retourner un produit ?</h3>
+        <p>Si vous n'êtes pas satisfait de votre achat, vous pouvez retourner le produit dans les 30 jours suivant la réception. Veuillez consulter notre politique de retour pour plus de détails.</p>
+      </div>
+      <!-- Ajoutez plus de questions ici -->
+    </div>
+  </div>
+</section> -->
 
+{% include 'home/partenaires.html' %}
 
 {% endblock %}
+
 {% block css %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/home/styles.css' %}">
 <style>
     .produit img {
     width: 150px;
-
 }
 .card-body img {
     width: 600px;
     height: auto;
     border-radius: 50%;
     margin: 20px auto;
+}
+.faq-section {
+    padding: 60px 0;
+    background-color: #f8f9fa;
+}
+.faq {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.faq-item {
+    max-width: 800px;
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+.faq-item h3 {
+    font-size: 1.5rem;
+    color: #343a40;
+}
+.faq-item p {
+    font-size: 1.1rem;
+    color: #6c757d;
 }
 </style>
 {% endblock %}
