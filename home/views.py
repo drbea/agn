@@ -18,4 +18,4 @@ def apropos(request):
     return render(request, 'home/Apropos.html')
 
 def livraison(request):
-    return render(request, 'home/Livraison.html')
+    return render(request, 'home/livraison.html')

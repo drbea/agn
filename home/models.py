@@ -24,6 +24,3 @@ class Testimonial(models.Model):
     class Meta:
         verbose_name = 'Témoignage'
         verbose_name_plural = 'Témoignages'
-
-
-

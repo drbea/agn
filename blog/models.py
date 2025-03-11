@@ -16,7 +16,6 @@ class Topic(models.Model):
     name = models.CharField(max_length=255)
     # category = models.ForeignKey(Category, on_delete=models.CASCADE)
     category = models.ManyToManyField(Category)  # Lien avec la table Image
-
     description = models.TextField(null = True, blank = True)
 
     def __str__(self):
