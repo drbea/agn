@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Testimonial, Image
+from .models import Testimonial, Image, Partenaire
 
 # Register your models here.
 
@@ -18,4 +18,8 @@ class TestimonialAdmin(admin.ModelAdmin):
 
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Partenaire)
+class PartenaireAdmin(admin.ModelAdmin):
     pass

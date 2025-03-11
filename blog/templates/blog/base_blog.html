@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}Blog{% endblock %}
 {% block css %}
 <style>
@@ -25,7 +26,7 @@
         margin-bottom: 10px;
     }
     .banner {
-        background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZnX36jyR6mxGymA1ejlbfc7_XWgftDV2nhQ&s'); /* Remplacez par l'URL de votre image */
+        background-image: url({% static 'img/IMG_0474.jpg' %});
         background-size: cover;
         background-position: center;
         color: white;
@@ -37,6 +38,7 @@
         font-size: 3em;
         font-weight: bold;
         margin-bottom: 10px;
+        color: #055b47;
     }
     .banner p {
         font-size: 1.2em;

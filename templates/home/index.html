@@ -62,7 +62,8 @@
 </section> -->
 
 <!-- Section témoignages -->
-<section class="bg-light py-5">
+<section class="bg-light py-3">
+    {% if testimonials %}
     <div class="container">
         <h2 class="text-center mb-4">Témoignages</h2>
         <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -95,6 +96,7 @@
             </a>
         </div>
     </div>
+    {% endif %}
 </section>
 
 <!-- Section FAQ
@@ -118,7 +120,6 @@
         <h3>Comment puis-je retourner un produit ?</h3>
         <p>Si vous n'êtes pas satisfait de votre achat, vous pouvez retourner le produit dans les 30 jours suivant la réception. Veuillez consulter notre politique de retour pour plus de détails.</p>
       </div>
-      <!-- Ajoutez plus de questions ici -->
     </div>
   </div>
 </section> -->

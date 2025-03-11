@@ -24,3 +24,15 @@ class Testimonial(models.Model):
     class Meta:
         verbose_name = 'Témoignage'
         verbose_name_plural = 'Témoignages'
+
+class Partenaire(models.Model):
+    name = models.CharField(max_length=255)
+    logo = models.ImageField(upload_to='partenaires/', null=True, blank=True)
+    url = models.URLField(null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Partenaire'
+        verbose_name_plural = 'Partenaires'
