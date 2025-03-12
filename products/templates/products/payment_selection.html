@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %} Sélection du mode de paiement {% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow p-4">
+                    <h1 class="text-center mb-4">Sélectionnez votre mode de paiement</h1>
+                    <form method="post" action="{% url 'process_payment' %}">
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label class="form-label">Modes de paiement disponibles :</label>
+                            {% for payment_method in payment_methods %}
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="payment_method" id="id_payment_{{ payment_method.id }}" value="{{ payment_method.id }}" required>
+                                    <label class="form-check-label" for="id_payment_{{ payment_method.id }}">
+                                        {{ payment_method.name }}
+                                    </label>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">Confirmer le paiement</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -5,6 +5,13 @@ from django.utils.timezone import now
 
 User = get_user_model()
 
+class PaymentMethod(models.Model):
+    name = models.CharField(max_length=100)
+    # Ajoutez d'autres champs si nécessaire (par exemple, une image, une description, etc.)
+
+    def __str__(self):
+        return self.name
+
 class Category(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(default="", null=True, blank=True)
@@ -48,7 +55,7 @@ class CartItem(models.Model):
     def get_subtotal(self):
         return self.product.price * self.quantity
 
-        
+
 # class Commentaire(models.Model):
 #     autheur = models.ForeignKey(User, on_delete = models.CASCADE)
 #     publication = models.ForeignKey(Publication, on_delete = models.CASCADE)

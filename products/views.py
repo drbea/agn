@@ -10,7 +10,8 @@ from .models import Product, Cart, CartItem, Order, OrderItem
 from .forms import OrderForm
 from django.contrib.auth.decorators import login_required
 
-from . models import Category, Product
+from . models import Category, Product, PaymentMethod
+# from .models import
 
 # Create your views here.
 
@@ -172,9 +173,9 @@ def checkout(request):
         form = OrderForm(request.POST)
         if form.is_valid():
             # Récupération des données du formulaire
-            first_name = form.cleaned_data['first_name']
-            last_name = form.cleaned_data['last_name']
-            email = form.cleaned_data['email']
+            first_name = request.user.first_name
+            last_name = request.user.last_name
+            email = request.user.email
             address = form.cleaned_data['address']
             city = form.cleaned_data['city']
             zip_code = form.cleaned_data['zip_code']
@@ -204,16 +205,34 @@ def checkout(request):
             cart.items.all().delete()
 
             # Redirection vers la confirmation de commande
-            return redirect('products:order_confirmation')
+            return redirect('products:payment_selection')
     else:
         form = OrderForm()
 
     context = {'cart_items': cart_items, 'total': total, 'form': form}
     return render(request, 'products/checkout.html', context)
 
+
+
+def payment_selection(request):
+    payment_methods = PaymentMethod.objects.all()  # Récupérer tous les modes de paiement
+    if request.method == "POST":
+        return redirect("products:process_payment")
+    context = {'payment_methods': payment_methods}
+    return render(request, 'products/payment_selection.html', context)
+
+
+def process_payment(request):
+    if request.method == 'POST':
+        payment_method_id = request.POST.get('payment_method')
+        payment_method = PaymentMethod.objects.get(id=payment_method_id)
+        # Traitez le paiement en utilisant le mode de paiement sélectionné
+        # ...
+        return redirect('products:payment_confirmation')  # Redirigez vers la confirmation de paiement
+    else:
+        return redirect('products:payment_selection')
+
+
 @login_required
 def order_confirmation(request):
     return render(request, 'products/order_confirmation.html')
-
-
-
