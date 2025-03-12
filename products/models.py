@@ -7,6 +7,9 @@ User = get_user_model()
 
 class PaymentMethod(models.Model):
     name = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='payment_images/', null = True, blank = True)
+    description = models.TextField(null = True, blank = True)
+
     # Ajoutez d'autres champs si nécessaire (par exemple, une image, une description, etc.)
 
     def __str__(self):

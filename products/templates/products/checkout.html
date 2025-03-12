@@ -7,22 +7,22 @@
             <div class="col-md-8">
                 <div class="card shadow p-4">
                     <h1 class="text-center mb-4">Passer à la caisse</h1>
-                    <form method="post" action="{% url 'products:checkout' %}">
+                    <form method="post">
                         {% csrf_token %}
 
                         <div class="mb-3">
                             <label for="id_first_name" class="form-label">Prénom</label>
-                            {{ request.user.first_name }}
+                            {{ form.first_name }}
                         </div>
 
                         <div class="mb-3">
                             <label for="id_last_name" class="form-label">Nom</label>
-                            {{ request.user.last_name }}
+                            {{ form.last_name }}
                         </div>
 
                         <div class="mb-3">
                             <label for="id_email" class="form-label">Email</label>
-                            {{ request.user.email }}
+                            {{ form.email }}
                         </div>
 
                         <div class="mb-3">

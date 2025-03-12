@@ -173,9 +173,9 @@ def checkout(request):
         form = OrderForm(request.POST)
         if form.is_valid():
             # Récupération des données du formulaire
-            first_name = request.user.first_name
-            last_name = request.user.last_name
-            email = request.user.email
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            email = form.cleaned_data['email']
             address = form.cleaned_data['address']
             city = form.cleaned_data['city']
             zip_code = form.cleaned_data['zip_code']
@@ -218,6 +218,7 @@ def payment_selection(request):
     payment_methods = PaymentMethod.objects.all()  # Récupérer tous les modes de paiement
     if request.method == "POST":
         return redirect("products:process_payment")
+        
     context = {'payment_methods': payment_methods}
     return render(request, 'products/payment_selection.html', context)
 
