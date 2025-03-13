@@ -1,18 +1,12 @@
 
 <div class="container">
+
+  {% for article in articles %}
     <div class="my-3">
-        <h1>Titre de l'article 1</h1>
-    <p>Contenu de l'article...</p>
+        <h1>{{ article.title }}/h1>
+    <p>{{ article.intro }}</p>
+    <img src="{{ article.image.url }}" alt="">
     </div>
 
-    <div class="my-3">
-        <h1>Titre de l'article 2</h1>
-    <p>Contenu de l'article...</p>
-    </div>
-
-    <div class="my-3">
-        <h1>Titre de l'article 3</h1>
-    <p>Contenu de l'article...</p>
-    </div>
 
 </div>

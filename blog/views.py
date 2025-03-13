@@ -4,7 +4,10 @@ from . models import Article, Category, Topic
 
 def index(request):
 
-    return render(request, "blog/base_blog.html")
+    context = {
+        "articles": Article.objects.all(),
+    }
+    return render(request, "blog/base_blog.html", context)
 
 
 def article_detail(request, article_id):
