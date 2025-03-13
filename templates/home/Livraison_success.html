@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Demande de Livraison Réussie{% endblock %}
+
+{% block content %}
+<section class="delivery-success-section py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">Demande de Livraison Réussie</h2>
+    <p class="text-center">Merci pour votre demande de livraison. Nous vous contacterons sous peu pour confirmer les détails.</p>
+    <div class="text-center">
+      <a href="{% url 'home:index' %}" class="btn btn-primary">Retour à l'accueil</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block css %}
+<style>
+  .delivery-success-section {
+    padding: 60px 0;
+    background-color: #f8f9fa;
+  }
+  .delivery-success-section p {
+    font-size: 1.2rem;
+    color: #6c757d;
+  }
+  .delivery-success-section .btn {
+    font-size: 1.2rem;
+    margin-top: 20px;
+  }
+</style>
+{% endblock %}

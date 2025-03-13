@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Contact Form Submission Successful{% endblock %}
+
+{% block content %}
+<section class="contact-success-section py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">Contact Form Submission Successful</h2>
+    <p class="text-center">Thank you for contacting us. We will get back to you shortly.</p>
+    <div class="text-center">
+      <a href="{% url 'home:index' %}" class="btn btn-primary">Return to Home</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block css %}
+<style>
+  .contact-success-section {
+    padding: 60px 0;
+    background-color: #f8f9fa;
+  }
+  .contact-success-section p {
+    font-size: 1.2rem;
+    color: #6c757d;
+  }
+  .contact-success-section .btn {
+    font-size: 1.2rem;
+    margin-top: 20px;
+  }
+</style>
+{% endblock %}

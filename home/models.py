@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 from products.models import Product
 
@@ -36,3 +37,16 @@ class Partenaire(models.Model):
     class Meta:
         verbose_name = 'Partenaire'
         verbose_name_plural = 'Partenaires'
+
+class SpecialOffer(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    image = models.ImageField(upload_to='offers/')
+    details = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('home:offer_detail', args=[str(self.id)])

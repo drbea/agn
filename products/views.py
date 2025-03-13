@@ -1,4 +1,3 @@
-
 from django.shortcuts import redirect, render, get_object_or_404
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -214,6 +213,15 @@ def checkout(request):
 @login_required
 def order_confirmation(request):
     return render(request, 'products/order_confirmation.html')
+
+def product_search(request):
+    query = request.GET.get('query')
+    products = Product.objects.filter(name__icontains=query)
+    context = {
+        'products': products,
+        'query': query
+    }
+    return render(request, 'products/product_search.html', context)
 
 
 

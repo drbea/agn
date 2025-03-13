@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Testimonial, Image, Partenaire
+from .models import Testimonial, Image, Partenaire, SpecialOffer
 
 # Register your models here.
 
@@ -23,3 +23,8 @@ class ImageAdmin(admin.ModelAdmin):
 @admin.register(Partenaire)
 class PartenaireAdmin(admin.ModelAdmin):
     pass
+
+@admin.register(SpecialOffer)
+class SpecialOfferAdmin(admin.ModelAdmin):
+    list_display = ('title', 'created_at')
+    search_fields = ('title', 'description')
