@@ -9,7 +9,8 @@ from .models import Product, Cart, CartItem, Order, OrderItem
 from .forms import OrderForm
 from django.contrib.auth.decorators import login_required
 
-from . models import Category, Product
+from . models import Category, Product, PaymentMethod
+# from .models import
 
 # Create your views here.
 
@@ -203,16 +204,39 @@ def checkout(request):
             cart.items.all().delete()
 
             # Redirection vers la confirmation de commande
-            return redirect('products:order_confirmation')
+            return redirect('products:payment_selection')
     else:
         form = OrderForm()
 
     context = {'cart_items': cart_items, 'total': total, 'form': form}
     return render(request, 'products/checkout.html', context)
 
+
+
+def payment_selection(request):
+    payment_methods = PaymentMethod.objects.all()  # Récupérer tous les modes de paiement
+    if request.method == "POST":
+        return redirect("products:process_payment")
+        
+    context = {'payment_methods': payment_methods}
+    return render(request, 'products/payment_selection.html', context)
+
+
+def process_payment(request):
+    if request.method == 'POST':
+        payment_method_id = request.POST.get('payment_method')
+        payment_method = PaymentMethod.objects.get(id=payment_method_id)
+        # Traitez le paiement en utilisant le mode de paiement sélectionné
+        # ...
+        return redirect('products:payment_confirmation')  # Redirigez vers la confirmation de paiement
+    else:
+        return redirect('products:payment_selection')
+
+
 @login_required
 def order_confirmation(request):
     return render(request, 'products/order_confirmation.html')
+<<<<<<< HEAD
 
 def product_search(request):
     query = request.GET.get('query')
@@ -225,3 +249,5 @@ def product_search(request):
 
 
 
+=======
+>>>>>>> bdc99dec56d14fd7a6d84b3f405c2791786073a1

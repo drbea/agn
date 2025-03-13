@@ -2,12 +2,50 @@
 {% block title %} Passer à la caisse {% endblock %}
 
 {% block content %}
-    <div class="container mt-5 text-center">
-        <h1>Passer à la caisse</h1>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">Confirmer la commande</button>
-        </form>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow p-4">
+                    <h1 class="text-center mb-4">Passer à la caisse</h1>
+                    <form method="post">
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label for="id_first_name" class="form-label">Prénom</label>
+                            {{ form.first_name }}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="id_last_name" class="form-label">Nom</label>
+                            {{ form.last_name }}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="id_email" class="form-label">Email</label>
+                            {{ form.email }}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="id_address" class="form-label">Adresse</label>
+                            {{ form.address }}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="id_city" class="form-label">Ville</label>
+                            {{ form.city }}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="id_zip_code" class="form-label">Code Postal</label>
+                            {{ form.zip_code }}
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">Confirmer la commande</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
