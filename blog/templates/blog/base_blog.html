@@ -55,7 +55,7 @@
 {% block content %}
 
   {% block baniere %}
-    {% include "blog/partials/blog_baniere.html" %}
+    {% include "blog/partial/blog_baniere.html" %}
   {% endblock %}
 
     <div class="container">
@@ -67,14 +67,12 @@
                {% comment %} Contenu des post/article/publication {% endcomment %}
     
 
-
-
             {% endblock %}
             </div>
 
             <div class="col-md-4 sidebar">
                 {% block sidebar %}
-                {% include 'blog/partials/sidebar_category.html' %}
+                {% include 'blog/partial/sidebar_category.html' %}
                 {% endblock %}
             </div>
         </div>

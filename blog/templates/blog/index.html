@@ -2,9 +2,25 @@
 
 
 
-{% block main_content %}
+{% block content %}
 
-{% include "blog/partials/articles.html" %}
+<!-- {% include "blog/partial/articles.html" %} -->
 
+<div class="container bg-success">
+    {% if articles %}
+  
+      {% for article in articles %}
+        <div class="my-3">
+            <h1>{{ article.title }}/h1>
+        <p>{{ article.intro }}</p>
+        <img src="{{ article.image.url }}" alt="">
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>Aucun article n'a été trouvé.</p>
+    {% endif %}
+  
+    
+  </div>
 
 {% endblock %}
