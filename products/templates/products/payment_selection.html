@@ -13,11 +13,13 @@
                         <div class="mb-3">
                             <label class="form-label">Modes de paiement disponibles :</label>
                             {% for payment_method in payment_methods %}
-                                <div class="form-check py-1 my-1">
-                                    <input class="form-check-input mx-2" type="radio" name="payment_method" id="id_payment_{{ payment_method.id }}" value="{{ payment_method.id }}" required>
-                                    <label class="form-check-label mx-2" for="id_payment_{{ payment_method.id }}">
+                                <div class="form-check py-2 my-2">
+                                    <input class="form-check-input me-2 border-success" type="radio" name="payment_method" id="id_payment_{{ payment_method.id }}" value="{{ payment_method.id }}" required style="transform: scale(1.3);">
+                                    <label class="form-check-label ms-2" for="id_payment_{{ payment_method.id }}" style="font-size: 1.1rem; display: flex; align-items: center;">
                                         {{ payment_method.name }}
-                                        <span><img class="img img-fluid w-25" src="{{payment_method.image.url }}" alt=""></span>
+                                        {% if payment_method.image %}
+                                            <span class="ms-3"><img class="img img-fluid" src="{{ payment_method.image.url }}" alt="{{ payment_method.name }}" style="max-height: 50px;"></span>
+                                        {% endif %}
                                     </label>
                                 </div>
                             {% endfor %}
