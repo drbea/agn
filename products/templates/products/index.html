@@ -1,0 +1,245 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}All products{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <!-- Sidebar gauche -->
+    <div class="col-md-3">
+      <h5 class="mb-3">Catégories</h5>
+      <form method="get" action="{% url 'products:product_list' %}">
+        <div class="list-group">
+          {% for category in categories %}
+          <div class="form-check">
+            <a href="{% url 'products:filter_by_category' category.id %}"
+               name="category"
+               class="{% if selected_category and category.id == selected_category.id %}active fw-bold bg-primary{% endif %} nav-link"
+               id="category{{ category.id }}"
+> {{ category.name }} </a>
+
+          </div>
+          {% endfor %}
+        </div>
+        <a href="{% url 'products:product_list' %}" class="btn btn-outline-primary mt-3">Tous les Produits</a>
+      </form>
+    </div>
+
+    <!-- Contenu principal -->
+    <div class="col-md-9">
+      {% if products %}
+      <div class="card-group">
+        {% for product in page_objects %}
+        <div class="card">
+          {% if product.image %}
+          <img
+            src="{{ product.image.url }}"
+            class="card-img-top img-fluid"
+            alt="..."
+          />
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text"> {{ product.description|truncatewords:4 }} </p>
+          </div>
+
+          <div class="card-body text-center ">
+            <a
+              type="submit"
+              class="btn btn-outline-info w-50"
+              href="{% url 'products:product_detail' product.id %}" 
+              href="#"
+              >Detail</a
+            >
+          </div>
+          <div class="card-footer">
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+        {% if page_objects %}
+          <nav aria-label="...">
+            <ul class="pagination">
+              {% if page_objects.has_previous %}
+              <li class="page-item">
+                <span class="page-link">
+                  <a href="?page={{ page_objects.previous_page_number }}">Previous</a>
+                </span>
+              </li>
+              <li class="page-item"><a class="page-link" href="?page=1">1</a></li>
+
+              {% else %}
+              <li class="page-item disabled">
+                <span class="page-link">Previous</span>
+              </li>
+              {% endif %}
+              <li class="page-item active" aria-current="page">
+                <span class="page-link"> {{ page_objects.number }}</span>
+              </li>
+              {% if page_objects.has_next %}
+              <li class="page-item">
+                <a class="page-link" href="?page={{ page_objects.next_page_number }}">Next</a>
+              </li>
+              {% endif %}
+            </ul>
+          </nav>
+        {% endif %}
+
+      {% else %}
+      <div>
+        <h3 class="bg-warning-subtle text-center">
+          Pas de produits disponible
+        </h3>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+{% block javascript %}
+<script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+{% endblock %}
+
+{% block css %}
+<style>
+  .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .card-img-top {
+    transition: transform 0.3s ease;
+  }
+
+  .card:hover .card-img-top {
+    transform: scale(1.1);
+  }
+
+  .card-body {
+    padding: 15px;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .card-text {
+    font-size: 0.9rem;
+    color: #555;
+  }
+
+  .card-footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #ddd;
+    padding: 10px 15px;
+    font-size: 0.85rem;
+    color: #666;
+  }
+
+  .btn {
+    margin: 5px;
+  }
+
+  .pagination {
+    margin-top: 20px;
+  }
+
+  .pagination .page-item {
+    margin: 0 5px;
+  }
+
+  .pagination .page-link {
+    border-radius: 4px;
+    padding: 5px 10px;
+  }
+
+  .pagination .page-item.active .page-link {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+
+  .pagination .page-item.disabled .page-link {
+    color: #6c757d;
+  }
+
+  .btn {
+    border: none;
+    border-radius: 25px; /* Boutons arrondis */
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Bouton "Détail" */
+  .btn-outline-info {
+    color: #17a2b8; /* Couleur du texte */
+    border: 2px solid #17a2b8; /* Bordure */
+    background-color: transparent;
+  }
+
+  .btn-outline-info:hover {
+    color: #fff; /* Couleur du texte au survol */
+    background: linear-gradient(45deg, #17a2b8, #138496); /* Dégradé */
+    border-color: transparent; /* Supprime la bordure au survol */
+    box-shadow: 0 4px 15px rgba(23, 162, 184, 0.3); /* Ombre */
+  }
+
+  /* Bouton "Ajouter au panier" */
+  .btn-outline-secondary {
+    color: #6c757d; /* Couleur du texte */
+    border: 2px solid #6c757d; /* Bordure */
+    background-color: transparent;
+  }
+
+  .btn-outline-secondary:hover {
+    color: #fff; /* Couleur du texte au survol */
+    background: linear-gradient(45deg, #28a745, #20c997); /* Dégradé vert */
+    border-color: transparent; /* Supprime la bordure au survol */
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3); /* Ombre */
+  }
+
+  /* Effet de remplissage au survol */
+  .btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%) rotate(45deg);
+    transition: all 0.5s ease;
+    z-index: 0;
+  }
+
+  .btn:hover::before {
+    width: 0;
+    height: 0;
+  }
+
+  /* Texte du bouton au-dessus de l'effet */
+  .btn span {
+    position: relative;
+    z-index: 1;
+  }
+</style>
+{% endblock %}
+
+
+

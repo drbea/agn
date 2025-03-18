@@ -18,13 +18,12 @@ urlpatterns = [
 
   path("checkout/", views.checkout, name="checkout"),
   path("order_confirmation/", views.order_confirmation, name="order_confirmation"),
-<<<<<<< HEAD
+# <<<<<<< HEAD
   path('search/', views.product_search, name='product_search'),
-=======
 
 
   path('payment/process/', views.process_payment, name='process_payment'),
   path('payment/payment_selection/', views.payment_selection, name='payment_selection'),
 
->>>>>>> bdc99dec56d14fd7a6d84b3f405c2791786073a1
+# >>>>>>> bdc99dec56d14fd7a6d84b3f405c2791786073a1
 ]

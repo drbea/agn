@@ -236,7 +236,7 @@ def process_payment(request):
 @login_required
 def order_confirmation(request):
     return render(request, 'products/order_confirmation.html')
-<<<<<<< HEAD
+# <<<<<<< HEAD
 
 def product_search(request):
     query = request.GET.get('query')
@@ -249,5 +249,5 @@ def product_search(request):
 
 
 
-=======
->>>>>>> bdc99dec56d14fd7a6d84b3f405c2791786073a1
+# =======
+# >>>>>>> bdc99dec56d14fd7a6d84b3f405c2791786073a1

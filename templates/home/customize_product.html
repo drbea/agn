@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Personnalisez vos Produits{% endblock %}
+
+{% block content %}
+<section class="custom-products-section py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">Personnalisez vos Produits</h2>
+    <form action="{% url 'home:customize_product' %}" method="post">
+      {% csrf_token %}
+      <div class="form-group mb-3">
+        <label for="product" class="form-label">Choisissez un produit :</label>
+        <select id="product" name="product" class="form-control">
+          {% for product in products %}
+          <option value="{{ product.id }}">{{ product.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-group mb-3">
+        <label for="options" class="form-label">Options :</label>
+        <input type="text" id="options" name="options" class="form-control" placeholder="Ajoutez vos options">
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Personnaliser</button>
+    </form>
+  </div>
+</section>
+{% endblock %}
+
+{% block css %}
+<style>
+  .custom-products-section {
+    background-color: #f8f9fa;
+  }
+  .custom-products-section h2 {
+    color: #343a40;
+  }
+  .custom-products-section .form-label {
+    font-weight: bold;
+    color: #555;
+  }
+  .custom-products-section button {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+  .custom-products-section button:hover {
+    background-color: #0056b3;
+  }
+</style>
+{% endblock %}

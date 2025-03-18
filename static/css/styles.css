@@ -1,0 +1,56 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+}
+
+.dark-mode {
+  --bg-color: #1a1a1a;
+  --text-color: #ffffff;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Light mode styles */
+body.light-mode {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+}
+
+body.light-mode .navbar {
+  background-color: #f8f9fa;
+  color: #000000;
+}
+
+body.light-mode .card {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+}
+
+body.dark-mode .navbar {
+  background-color: #343a40;
+  color: #ffffff;
+}
+
+body.dark-mode .card {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+body.dark-mode .btn {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+body.dark-mode .btn:hover {
+  background-color: #0056b3;
+}
