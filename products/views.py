@@ -177,7 +177,6 @@ def checkout(request):
             email = form.cleaned_data['email']
             address = form.cleaned_data['address']
             city = form.cleaned_data['city']
-            zip_code = form.cleaned_data['zip_code']
 
             # Création de la commande
             order = Order.objects.create(
@@ -187,7 +186,6 @@ def checkout(request):
                 email=email,
                 address=address,
                 city=city,
-                zip_code=zip_code,
                 total=total
             )
 

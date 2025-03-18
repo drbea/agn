@@ -1,112 +1,104 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}A PROPOS DE nous{% endblock %}
-
+{% block title %}À PROPOS DE nous{% endblock %}
 
 {% block css %}
-  <style>
-    .about-section {
-      padding: 60px 0;
-      background-color: #f8f9fa;
+<style>
+  .about-section {
+    padding: 60px 0;
+    background-color: #f8f9fa;
+  }
+  .about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .z-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 40px;
+  }
+  .z-item {
+    padding: 20px;
+  }
+  .z-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .z-item h2, .z-item h4 {
+    color: #343a40;
+    margin-bottom: 20px;
+  }
+  .z-item p {
+    color: #6c757d;
+    line-height: 1.8;
+  }
+  /* Ajustements pour la mise en page en Z */
+  .z-item:nth-child(odd) {
+    grid-column: 1;
+  }
+  .z-item:nth-child(even) {
+    grid-column: 2;
+  }
+  @media (max-width: 768px) {
+    .z-layout {
+      grid-template-columns: 1fr;
     }
-    .about-image {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    .z-item:nth-child(odd), .z-item:nth-child(even) {
+      grid-column: 1;
     }
-    .about-content {
-      padding: 20px;
-    }
-    .about-content h2 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      color: #343a40;
-    }
-    .about-content p {
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: #6c757d;
-    }
-  </style>
+  }
+</style>
 {% endblock %}
-{% block content %} 
 
-
-<!-- À propos Section -->
+{% block content %}
 <section class="about-section">
-  <div class="container">
-    <div class="row ">
-      <!-- Image à droite -->
-      <div class="col-md-6">
-        <img src="https://cdn.pixabay.com/photo/2014/07/08/10/47/team-386673_1280.jpg" alt="Image de l'entreprise" class="about-image">
+  <div class="about-container">
+    <div class="z-layout">
+      <div class="z-item">
+        <img src="https://cdn.pixabay.com/photo/2014/07/08/10/47/team-386673_1280.jpg" alt="Image de l'entreprise">
       </div>
-      <!-- Contenu à gauche -->
-      <div class="col-md-6">
-        <div class="about-content">
-          <h2>À propos de nous</h2>
-          <p>
-            Bienvenue sur le site de AGN, une entreprise engagée dans l'innovation et le bien-être de la population. Chez AGN, nous mettons notre expertise et notre passion au service de solutions uniques, conçues pour répondre aux besoins de nos clients avec efficacité et qualité.
-          Notre mission est de développer des produits et services innovants qui améliorent le quotidien, en mettant l'accent sur la qualité, la durabilité et l'impact positif sur la société. Nous croyons en une approche centrée sur l'humain, où chaque produit et service est pensé pour apporter une réelle valeur ajoutée.
-          Nous sommes fiers d'œuvrer avec transparence, engagement et excellence pour bâtir un avenir meilleur aux côtés de nos clients et partenaires.
-          Rejoignez-nous dans cette aventure et découvrez ce que AGN peut vous offrir !
-          </p>
-            
-        </div>
+      <div class="z-item">
+        <h2>À propos de nous</h2>
+        <p>Bienvenue sur le site de AGN, une entreprise engagée dans l'innovation et le bien-être de la population. Chez AGN, nous mettons notre expertise et notre passion au service de solutions uniques, conçues pour répondre aux besoins de nos clients avec efficacité et qualité.</p>
+        <p>Notre mission est de développer des produits et services innovants qui améliorent le quotidien, en mettant l'accent sur la qualité, la durabilité et l'impact positif sur la société. Nous croyons en une approche centrée sur l'humain, où chaque produit et service est pensé pour apporter une réelle valeur ajoutée.</p>
+        <p>Nous sommes fiers d'œuvrer avec transparence, engagement et excellence pour bâtir un avenir meilleur aux côtés de nos clients et partenaires. Rejoignez-nous dans cette aventure et découvrez ce que AGN peut vous offrir !</p>
       </div>
-    </div>
-    <div>
-    <br>
-    
-      <h4 class="text-center"> Notre Histoire</h4>
-      <p>
-        Depuis notre création en 2014, nous avons parcouru un long chemin. Tout a commencé par l’idée de transformer des produits naturels en des aliments et boissons de haute qualité, accessibles à tous. Aujourd’hui, nous sommes fiers d’être reconnus pour notre engagement envers la qualité, l’authenticité et l’innovation. Notre croissance repose sur la confiance que nos clients nous accordent et sur notre volonté inébranlable de rester fidèles à nos valeurs.
-      </p>
-      <h4 class="text-center">Ce Que Nous Faisons</h4>
-      <p>
-        Nous sommes spécialisés dans la transformation de produits naturels en une gamme variée de produits alimentaires et boissons. Notre catalogue comprend :
 
-        Jus naturels : Pressés à froid ou élaborés à partir de fruits et légumes soigneusement sélectionnés, nos jus conservent toutes leurs vitamines et leur fraîcheur.
+      <div class="z-item">
+        <h4>Notre Histoire</h4>
+        <p>Depuis notre création en 2014, nous avons parcouru un long chemin. Tout a commencé par l’idée de transformer des produits naturels en des aliments et boissons de haute qualité, accessibles à tous. Aujourd’hui, nous sommes fiers d’être reconnus pour notre engagement envers la qualité, l’authenticité et l’innovation. Notre croissance repose sur la confiance que nos clients nous accordent et sur notre volonté inébranlable de rester fidèles à nos valeurs.</p>
+      </div>
+      <div class="z-item">
+        <h4>Ce Que Nous Faisons</h4>
+        <p>Nous sommes spécialisés dans la transformation de produits naturels en une gamme variée de produits alimentaires et boissons. Notre catalogue comprend :</p>
+        <ul>
+          <li>Jus naturels</li>
+          <li>Café</li>
+          <li>Épices</li>
+          <li>Céréales</li>
+          <li>Et bien plus encore</li>
+        </ul>
+      </div>
 
-        Café : Torréfié avec art, notre café provient de plantations durables et offre une expérience riche en arômes.
-
-        Épices : Sélectionnées avec soin, nos épices sont issues de cultures responsables et rehaussent vos plats avec des saveurs authentiques.
-
-      Céréales : Transformées pour préserver leurs nutriments, nos céréales sont parfaites pour une alimentation équilibrée.
-
-      Et bien plus encore : Nous explorons constamment de nouvelles idées pour élargir notre gamme et répondre aux besoins de nos clients.
-      </p>
-      <h4 style="text-align: center;">Notre Philosophie</h4>
-      <p>Chez AGN, nous croyons en une approche respectueuse de la nature et de l’humain. Nous nous engageons à :
-
-        Préserver la qualité : Chaque produit est conçu pour conserver ses propriétés naturelles, sans additifs inutiles.
-        
-        Respecter l’environnement : Nous privilégions des ingrédients issus de l’agriculture durable et des méthodes de transformation éco-responsables.
-        
-        Promouvoir la santé : Nos produits sont conçus pour contribuer à une alimentation saine et équilibrée.
-        
-        Valoriser les traditions : Nous nous inspirons des savoir-faire ancestraux tout en innovant pour répondre aux attentes modernes.
-        
-        Notre Engagement
-        Depuis 2014, notre engagement envers la qualité et la transparence n’a jamais faibli. Nous travaillons en étroite collaboration avec des producteurs locaux et internationaux pour garantir des ingrédients de premier choix. Chaque étape de notre processus de production est rigoureusement contrôlée pour vous offrir des produits que vous pouvez consommer en toute confiance.</p>
-        <h4 style="text-align: center;">Pourquoi Nous Choisir ?</h4>
-        <p>Qualité supérieure : Des produits naturels, sans compromis sur la qualité.
-
-          Savoirs-faire unique : Une expertise acquise depuis 2014 dans la transformation des produits naturels.
-          
-          Engagement durable : Des pratiques respectueuses de l’environnement et des communautés.
-          
-          Variété et innovation : Une gamme diversifiée qui évolue avec vos besoins.
-          
-          Rejoignez Notre Aventure
-          Nous sommes plus qu’une entreprise ; nous sommes une communauté de passionnés qui croient en la puissance de la nature. Que vous soyez à la recherche de jus revitalisants, de café aromatique, d’épices savoureuses ou de céréales nutritives, nous avons ce qu’il vous faut.
-          
-          Explorez notre site pour découvrir nos produits et laissez-vous séduire par des saveurs naturelles et authentiques. Merci de faire partie de notre histoire et de soutenir notre mission : vous offrir le meilleur de la nature, chaque jour.
-          
-          [Nom de l’entreprise] – La nature dans toute sa pureté, transformée avec passion.</p>
+      <div class="z-item">
+        <h4>Notre Philosophie</h4>
+        <p>Chez AGN, nous croyons en une approche respectueuse de la nature et de l’humain. Nous nous engageons à :</p>
+        <ul>
+          <li>Préserver la qualité</li>
+          <li>Respecter l’environnement</li>
+          <li>Promouvoir la santé</li>
+          <li>Valoriser les traditions</li>
+        </ul>
+      </div>
+      <div class="z-item">
+        <h4>Pourquoi Nous Choisir ?</h4>
+        <p>Qualité supérieure, savoir-faire unique, engagement durable, variété et innovation. Rejoignez notre aventure et découvrez le meilleur de la nature avec AGN.</p>
+      </div>
     </div>
   </div>
 </section>
-
 {% endblock %}
